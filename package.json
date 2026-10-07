@@ -13,6 +13,7 @@
     "format": "biome format --write",
     "lint": "biome lint",
     "check": "biome check",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky || 1"
   },
   "dependencies": {
@@ -41,7 +42,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "vite": "^8.0.0"
   },
   "pnpm": {
@@ -56,6 +57,43 @@
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "renovate": {
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+      "config:recommended",
+      "schedule:monthly"
+    ],
+    "packageRules": [
+      {
+        "groupName": "dependencies",
+        "matchPackageNames": [
+          "*"
+        ]
+      },
+      {
+        "groupName": "tanstack",
+        "matchPackageNames": [
+          "@tanstack/**"
+        ]
+      },
+      {
+        "groupName": "react",
+        "matchPackageNames": [
+          "react",
+          "react-dom",
+          "@types/react",
+          "@types/react-dom",
+          "@vitejs/plugin-react"
+        ]
+      },
+      {
+        "groupName": "typescript",
+        "matchPackageNames": [
+          "typescript"
+        ]
+      }
     ]
   }
 }
